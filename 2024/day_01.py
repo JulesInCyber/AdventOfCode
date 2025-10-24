@@ -1,33 +1,29 @@
-'''
-https://adventofcode.com/2024/day/1
-'''
-import random
+def similarity_score(data1, data2):
+    data1.sort()
+    data2.sort()
+    score = 0
+    i = 0
+    for entry in data1:
+        distance = abs(data1[i] - data2[i])
+        score = score + distance
+        i += 1
+    return score
 
-# Generate two random lists that we want to compare
-# l1 = [random.randint(0,9) for i in range(6)]
-# l2 = [random.randint(0,9) for i in range(6)]
+# Test Data
+t1 = [3, 4, 2, 1, 3, 3]
+t2 = [4, 3, 5, 3, 9, 3]
 
-# Using input Lists
-with open("input01.txt") as f:
-    data = f.read().strip().splitlines()
+# Real Data
+# with open("input01.txt") as f:
+#     data = f.read().strip().splitlines()
 
-l1 = []
-l2 = []
+# l1 = []
+# l2 = []
 
-for line in data:
-    a, b = map(int, line.split())
-    l1.append(a)
-    l2.append(b)
+# for line in data:
+#     a, b = map(int, line.split())
+#     l1.append(a)
+#     l2.append(b)
 
-# Sort the lists
-l1.sort()
-l2.sort()
-
-i = 0
-sum = 0
-
-for entry in l1:
-    dist = abs(l1[i] - l2[i])
-    sum += dist
-    i += 1
-print(sum)
+sim = similarity_score(t1,t2)
+print(sim)

@@ -9,5 +9,15 @@ def similarity_score(data1, data2):
 t1 = [3, 4, 2, 1, 3, 3]
 t2 = [4, 3, 5, 3, 9, 3]
 
-similarity = similarity_score(t1, t2)
+# Real data
+r1 = []
+r2 = []
+with open("input01.txt") as file:
+    data = file.read().strip().splitlines()
+for line in data:
+    a, b = map(int, line.split())
+    r1.append(a)
+    r2.append(b)
+
+similarity = similarity_score(r1, r2)
 print(similarity)

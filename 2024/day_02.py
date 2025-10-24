@@ -1,5 +1,3 @@
-import random
-
 '''
 https://adventofcode.com/2024/day/2
 Safe Data:
@@ -39,6 +37,10 @@ test_data = [
 [1, 3, 6, 7, 9]  # Safe
 ]
 
+safe_reports = 0
 for report in test_data:
     result = check_safety(report)
-    print(result)
+    if result == "Safe":
+        safe_reports += 1
+
+print(safe_reports)

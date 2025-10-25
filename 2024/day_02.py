@@ -37,6 +37,14 @@ test_data = [
 [1, 3, 6, 7, 9]  # Safe
 ]
 
+real_data = []
+with open ("input02.txt") as file:
+    data = file.read().strip().splitlines()
+    for line in data:
+        r = line.split(" ")
+        r = [int(x) for x in r]
+        real_data.append(r)
+
 safe_reports = 0
 for report in test_data:
     result = check_safety(report)

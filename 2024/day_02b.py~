@@ -30,17 +30,14 @@ test_data = [
 ]
 
 # Live Data
-real_data = []
 with open ("input02.txt") as file:
-    data = file.read().strip().splitlines()
-    for line in data:
-        r = line.split(" ")
-        r = [int(x) for x in r]
-        real_data.append(r)
+    data = file.strip()
+
+
 
 if __name__ == '__main__':
     safe_reports = 0
-    for t in real_data:
+    for t in test_data:
         result = advanced_check(t)
         if result == True:
             safe_reports += 1

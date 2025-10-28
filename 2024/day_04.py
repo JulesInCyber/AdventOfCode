@@ -22,7 +22,7 @@ def forward_row(grid: list[str], pattern: str) -> int:
 def backward_row(grid: list[str], pattern: str) -> int:
     count = 0
     for row in grid:
-        matches = re.findall(pattern, row)
+        matches = re.findall(pattern[::-1], row)
         if matches:
             count  += 1
     return count
@@ -31,22 +31,32 @@ def forward_col(grid: list[list[str]], pattern: str) -> int:
     count = 0
     max_rows = len(grid)
     max_cols = len(grid[0])
-    pattern = list(pattern) # Each Letter as list-entry
-    for row in range(max_rows):
+    pattern_length = len(pattern)
+    for row in range(max_rows - pattern_length + 1):
         for col in range(max_cols):
-            if grid[row][col] == 'X':
-                if row + 1 < max_cols:
-                    if grid[row+1][col] == 'M':
-                        if row + 2 < max_cols:
-                            if grid[row+2][col] == 'A':
-                                if row + 3 < max_cols:
-                                    if grid[row+3][col] == 'S':
-                                        count += 1
+            word = ''.join(grid[row+i][col] for i in range(pattern_length))
+            if word == pattern:
+                count += 1
+    return count
+
+def backward_col(grid: list[list[str]], pattern: str) -> int:
+    count = 0
+    max_rows = len(grid)
+    max_cols = len(grid[0])
+    pattern_length = len(pattern)
+    for row in range(max_rows - pattern_length + 1):
+        for col in range(max_cols):
+            word = ''.join(grid[row+i][col] for i in range(pattern_length))
+            if word == pattern[::-1]:
+                count += 1
     return count
 
 
-fr = forward_row(data, "XMAS")
-br = backward_row(data, "SAMX")
-fc = forward_col(nested, "XMAS")
+pat = "XMAS"
+
+fr = forward_row(data, pat)
+br = backward_row(data, pat)
+fc = forward_col(nested, pat)
+bc = backward_col(nested, pat)
 print(fc)
 print(fr + br)

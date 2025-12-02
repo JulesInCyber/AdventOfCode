@@ -1,7 +1,7 @@
 import re
 
 # Preparing The Data
-with open("002_test.txt") as file:
+with open("./002_live.txt") as file:
     data = file.read().split(',')
 
 sum = 0
@@ -9,7 +9,7 @@ sum = 0
 for numbers in data:
     range_start = int(numbers.split('-')[0])
     range_end = int(numbers.split('-')[1])+1
-    pattern = r"^(\d+)\1$"
+    pattern = r"^(\d+)\1+$" # delete the last '+' for exactly 2
     for num in range(range_start,range_end):
         if re.search(pattern, str(num)):
             sum += num

@@ -1,15 +1,4 @@
 import re
-import numpy as np
-
-# Function
-def invalid_id(start, end):
-    id = []
-    # Sequence of digits repeated twice
-    search_pattern = r"^(\d+)\1"
-    for number in range(start, end+1):
-        if  re.search(search_pattern, str(number)):
-            id.append(number)
-    return id
 
 # Preparing The Data
 with open("002_test.txt") as file:
@@ -25,9 +14,7 @@ for numbers in data:
         if re.search(pattern, str(num)):
             sum += num
 
-# print(sum)
+print(sum)
 
-invalid = invalid_id(11,22)
-# sum = [np.sum(x) for x in invalid]
-x = np.sum(invalid)
-print(x)
+# r = find_pattern(998,1012)
+# print(r)

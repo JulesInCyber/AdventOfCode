@@ -1,7 +1,7 @@
 import re
 
 # Test Data
-with open("D:/GitHub/AdventOfCode/2025/001_test.txt") as file:
+with open("D:/GitHub/AdventOfCode/2025/001_live.txt") as file:
     data = file.read().strip().splitlines()
 
 def get_algorithm(data):
@@ -35,19 +35,20 @@ def method_0x434C49434B(dial_start, instructions):
     - Number of times dial crosses 0
     '''
     clicks = 0
+    dial = dial_start
+    
     for i in instructions:
-        old_dial = dial_start
-        #print(f"Older: {dial_start}")
-        if i[0] == "L":
-            result = dial_start - int(i[1])
-            # print(f"L Result is: {result}")
-            dial_start = result % 100
-        elif i[0] =="R":
-            result = dial_start + int(i[1])
-            # print(f"R Result is: {result}")
-            dial_start = result % 100
-        if dial_start == 0:
-            clicks += 1
+        steps = int(i[1])
+        for s in range(steps):
+            if i[0] == "L":
+                dial = (dial + 1) % 100
+            else:
+                dial = (dial - 1) % 100
+            
+            if dial == 0:
+                clicks += 1
+
+
 
     code = f"The Code is: {clicks}"
     return code

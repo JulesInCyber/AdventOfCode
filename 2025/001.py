@@ -1,7 +1,7 @@
 import re
 
 # Test Data
-with open("D:/GitHub/AdventOfCode/2025/001_test.txt") as file:
+with open("D:/GitHub/AdventOfCode/2025/001_live.txt") as file:
     data = file.read().strip().splitlines()
 
 def get_algorithm(data):
@@ -17,7 +17,7 @@ def get_algorithm(data):
 def turn_dial(dial_start, instructions):
     zeroes = 0
     for i in instructions:
-        print(f"Dial at: {dial_start}")
+        # print(f"Dial at: {dial_start}")
         if dial_start == 0:
             zeroes += 1
         if i[0] == "L":

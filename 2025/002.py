@@ -4,21 +4,17 @@ import re
 with open("002_test.txt") as file:
     data = file.read().split(',')
 
-results = []
+sum = 0
 # Iteration through ranges
 for numbers in data:
     range_start = int(numbers.split('-')[0])
     range_end = int(numbers.split('-')[1])+1
-    for i in range(range_start,range_end):
-        pass
-
-def find_pattern(start, end):
-    pattern = r"(.+?)\1"
-    results = []
-    for num in range(start, end +1):
+    pattern = r"^(\d+)\1$"
+    for num in range(range_start,range_end):
         if re.search(pattern, str(num)):
-            results.append(num)
-    return results
+            sum += num
 
-r = find_pattern(11,1111)
-print(r)
+print(sum)
+
+# r = find_pattern(998,1012)
+# print(r)

@@ -38,6 +38,8 @@ def get_neighbors(grid,row,col):
 with open("./004_test.txt") as file:
     data = file.read().strip().split()
 
+data = [[char for char in s] for s in data]
+
 # Counting Rolls that are accessible by forklifts
 accessable = 0
 for i in range(len(data)):
@@ -47,5 +49,6 @@ for i in range(len(data)):
             rolls = neighbors.count("@")
             if rolls < 4:
                 accessable += 1
+
 
 print(accessable)
